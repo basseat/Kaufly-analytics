@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fct_delivery_performance
+    description: Weekly delivery SLA metrics by carrier, country, and membership status with percentile transit times
+    columns:
+      - name: order_week
+        tests:
+          - not_null
+      - name: on_time_rate
+        description: Percentage of deliveries meeting SLA
+
+  - name: fct_returns_analysis
+    description: Monthly return volume and rates by product category and return reason
+    columns:
+      - name: return_month
+        tests:
+          - not_null

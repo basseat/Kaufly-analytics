@@ -1,0 +1,32 @@
+name: kaufly_analytics
+version: '1.0.0'
+
+profile: kaufly
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  kaufly_analytics:
+    staging:
+      +schema: staging
+      +materialized: view
+    intermediate:
+      +schema: intermediate
+      +materialized: view
+    marts:
+      +materialized: table
+      product:
+        +schema: product
+      operations:
+        +schema: operations
+      revenue:
+        +schema: revenue
+      membership:
+        +schema: membership

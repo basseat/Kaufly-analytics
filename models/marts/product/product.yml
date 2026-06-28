@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fct_conversion_funnel
+    description: Daily conversion funnel metrics by product category showing drop-off rates at each stage
+    columns:
+      - name: session_date
+        tests:
+          - not_null
+
+  - name: fct_product_performance
+    description: Product-level sales, revenue, buyer, and return metrics
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null

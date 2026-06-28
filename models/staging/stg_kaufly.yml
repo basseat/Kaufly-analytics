@@ -1,0 +1,120 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Cleaned customer registrations
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: country
+        tests:
+          - accepted_values:
+              values: ["DE", "AT", "CH"]
+
+  - name: stg_products
+    description: Product catalogue
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: category
+        tests:
+          - accepted_values:
+              values: ["fashion", "electronics", "home_living"]
+
+  - name: stg_events
+    description: Clickstream events
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+      - name: event_name
+        tests:
+          - accepted_values:
+              values:
+                - account_registered
+                - page_view
+                - product_viewed
+                - added_to_cart
+                - checkout_started
+                - payment_submitted
+                - order_confirmed
+
+  - name: stg_orders
+    description: Customer orders with computed net amount
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ["delivered", "shipped", "cancelled", "returned"]
+      - name: net_amount
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: Order line items with computed line total
+    columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
+
+  - name: stg_deliveries
+    description: Shipment tracking with transit and delay metrics
+    columns:
+      - name: delivery_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+
+  - name: stg_returns
+    description: Return requests with processing time
+    columns:
+      - name: return_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_memberships
+    description: Kaufly+ subscriptions with tenure
+    columns:
+      - name: membership_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ["active", "cancelled"]
+
+  - name: stg_membership_benefits
+    description: Benefit usage log
+    columns:
+      - name: benefit_id
+        tests:
+          - unique
+          - not_null
+      - name: benefit_type
+        tests:
+          - accepted_values:
+              values: ["free_delivery", "discount_10pct"]

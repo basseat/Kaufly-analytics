@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: fct_customer_ltv
+    description: Customer lifetime value with cohort, segmentation, membership status, and monthly revenue run rate
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_segment
+        tests:
+          - accepted_values:
+              values: ["one_time", "repeat", "loyal"]
+
+  - name: fct_revenue_daily
+    description: Daily revenue by country, category, and membership status with 7-day rolling aggregates
+    columns:
+      - name: order_date
+        tests:
+          - not_null

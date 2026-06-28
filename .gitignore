@@ -1,0 +1,23 @@
+# data
+data/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# environment
+.env
+profiles.yml

@@ -1,0 +1,70 @@
+version: 2
+
+sources:
+  - name: kaufly
+    schema: raw
+    description: Raw Kaufly e-commerce data
+    tables:
+      - name: customers
+        description: Customer registrations
+        columns:
+          - name: customer_id
+            tests:
+              - unique
+              - not_null
+      - name: products
+        description: Product catalogue
+        columns:
+          - name: product_id
+            tests:
+              - unique
+              - not_null
+      - name: events
+        description: Clickstream events
+        columns:
+          - name: event_id
+            tests:
+              - unique
+              - not_null
+      - name: orders
+        description: Customer orders
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+      - name: order_items
+        description: Line items per order
+        columns:
+          - name: order_item_id
+            tests:
+              - unique
+              - not_null
+      - name: deliveries
+        description: Shipment tracking
+        columns:
+          - name: delivery_id
+            tests:
+              - unique
+              - not_null
+      - name: returns
+        description: Return requests
+        columns:
+          - name: return_id
+            tests:
+              - unique
+              - not_null
+      - name: memberships
+        description: Kaufly+ subscriptions
+        columns:
+          - name: membership_id
+            tests:
+              - unique
+              - not_null
+      - name: membership_benefits
+        description: Benefit usage log
+        columns:
+          - name: benefit_id
+            tests:
+              - unique
+              - not_null

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fct_membership_impact
+    description: Customer-level comparison of member vs non-member behaviour including AOV uplift and benefit usage
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_membership_retention
+    description: Monthly Kaufly+ cohort retention and churn metrics by plan
+    columns:
+      - name: start_cohort
+        tests:
+          - not_null
