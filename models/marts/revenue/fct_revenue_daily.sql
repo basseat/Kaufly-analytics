@@ -19,7 +19,7 @@ daily_revenue as (
         avg(o.net_amount) as avg_order_value
     from orders o
     inner join order_items oi on o.order_id = oi.order_id
-    where o.order_status = 'completed'
+    where o.order_status = 'delivered'
     group by o.order_date, o.country, oi.category, o.is_member_order
 )
 

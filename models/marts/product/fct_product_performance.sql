@@ -16,7 +16,7 @@ product_sales as (
         min(order_date) as first_sold_date,
         max(order_date) as last_sold_date
     from items
-    where order_status = 'completed'
+    where order_status = 'delivered'
     group by product_id, brand, category, subcategory
 ),
 
